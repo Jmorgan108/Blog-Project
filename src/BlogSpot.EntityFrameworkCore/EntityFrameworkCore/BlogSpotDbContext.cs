@@ -25,7 +25,7 @@ public class BlogSpotDbContext :
     ITenantManagementDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
+    public DbSet<Post> Posts { get; set; }
 
     #region Entities from the modules
 

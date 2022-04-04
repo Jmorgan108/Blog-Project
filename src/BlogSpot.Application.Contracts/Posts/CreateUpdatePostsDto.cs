@@ -1,20 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Domain.Entities.Auditing;
 
-namespace BlogSpot
+
+namespace BlogSpot.Posts
 {
-    public class Post : AuditedAggregateRoot<Guid>
+    public class CreateUpdatePostsDto
     {
         public Guid UserId { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
+
         public TagType Tags { get; set; }
+
         public int Likes { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Content { get; set; }
 
     }
