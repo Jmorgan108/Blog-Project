@@ -33,6 +33,19 @@ public class BlogSpotMenuContributor : IMenuContributor
                 order: 0
             )
         );
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+            "BlogSpot",
+            l["Menu:BlogSpot"],
+            icon: "fa fa-blog"
+        ).AddItem(
+            new ApplicationMenuItem(
+                "BlogSpot.Posts",
+                l["Menu:Posts"],
+                url: "/Posts"
+                )
+            )
+        );
 
         if (MultiTenancyConsts.IsEnabled)
         {
