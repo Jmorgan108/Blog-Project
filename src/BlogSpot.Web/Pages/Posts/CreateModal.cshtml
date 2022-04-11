@@ -1,0 +1,19 @@
+﻿@page
+@model BlogSpot.Web.Pages.Posts.CreateModalModel
+@using BlogSpot.Localization
+@using BlogSpot.Web.Pages.Posts
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IStringLocalizer<BlogSpotResource> L
+@{
+	Layout = null;
+}
+
+<abp-dynamic-form abp-model="Post" asp-page="/Posts/CreateModal">
+	<abp-modal>
+		<abp-modal-header title="@L["NewPost"].Value"></abp-modal-header>
+		<abp-modal-body>
+			<abp-form-content />
+		</abp-modal-body>
+	</abp-modal>	
+</abp-dynamic-form>
