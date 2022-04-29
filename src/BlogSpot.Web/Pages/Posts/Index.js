@@ -1,5 +1,7 @@
 ﻿$(function () {
     var l = abp.localization.getResource('BlogSpot');
+    var createModal = new abp.ModalManager(abp.appPath + 'Posts/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'Posts/EditModal');
 
     var dataTable = $('#PostsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -10,6 +12,20 @@
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(blogSpot.posts.post.getList),
             columnDefs: [
+                {
+                    title: l('Actions'),
+                    rowAction: {
+                        items:
+                            [
+                                {
+                                    text: l('Edit'),
+                                    action: function (data) {
+                                        editModal.open({ id: data.record.id });
+                                    }
+                                }
+                            ]
+                    }
+                },
                 {
                     title: l('Title'),
                     data: "title"
@@ -53,6 +69,10 @@
     var createModal = new abp.ModalManager(abp.appPath + 'Posts/CreateModal');
 
     createModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
+
+    editModal.onResult(function () {
         dataTable.ajax.reload();
     });
 

@@ -1,0 +1,23 @@
+﻿@page
+@using BlogSpot.Localization
+@using BlogSpot.Web.Pages.Posts
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model BlogSpot.Web.Pages.Posts.EditModalModel
+@inject IStringLocalizer<BlogSpotResource> L
+@{
+	Layout = null;
+}
+
+< form abp-model="Post" asp-page="/Posts/EditModal">
+<abp-modal>
+	<abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="Id" />
+            <abp-input asp-for="Post.Content"></abp-input>
+            <abp-input asp-for="Post.PublishDate"></abp-input>
+            <abp-input asp-for="Post.UserId" readonly="true"></abp-input>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+</abp-modal>	
+</form>

@@ -6,7 +6,7 @@ using Volo.Abp.Domain.Repositories;
 namespace BlogSpot.Posts
 {
     public class PostAppService : CrudAppService<Post, PostDto, Guid, 
-        PagedAndSortedResultRequestDto, CreateUpdatePostsDto>, IPostsAppService
+        PagedAndSortedResultRequestDto, CreateUpdatePostsDto>, IPostAppService
     {
         public PostAppService(IRepository<Post, Guid> repository) : base(repository)
         {

@@ -14,8 +14,6 @@ namespace BlogSpot.Posts
 
         public TagType Tags { get; set; }
 
-        public int Likes { get; set; }
-
         [Required]
         public string Title { get; set; }
 

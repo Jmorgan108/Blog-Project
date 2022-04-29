@@ -10,9 +10,9 @@ namespace BlogSpot.Web.Pages.Posts
         [BindProperty]
         public CreateUpdatePostsDto Post { get; set; }
 
-        private readonly IPostsAppService _postAppService;
+        private readonly IPostAppService _postAppService;
 
-        public CreateModalModel(IPostsAppService postAppService)
+        public CreateModalModel(IPostAppService postAppService)
         {
             _postAppService = postAppService;
         }
