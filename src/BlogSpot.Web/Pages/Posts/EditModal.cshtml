@@ -14,7 +14,9 @@
 	<abp-modal-header title="@L["Update"].Value"></abp-modal-header>
         <abp-modal-body>
             <abp-input asp-for="Id" />
+            <abp-input asp-for="Post.Title"></abp-input>
             <abp-input asp-for="Post.Content"></abp-input>
+            <abp-select asp-for="Post.Tags"></abp-select>
             <abp-input asp-for="Post.PublishDate"></abp-input>
             <abp-input asp-for="Post.UserId" readonly="true"></abp-input>
         </abp-modal-body>

@@ -22,6 +22,20 @@
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
+                                },
+                                {
+                                    text: l('Delete'),
+                                    confirmMessage: function (data) {
+                                        return l('PostDeletionConfirmationMessage', data.record.name);
+                                    },
+                                    action: function (data) {
+                                            blogSpot.posts.post
+                                            .delete(data.record.id)
+                                            .then(function () {
+                                                abp.notify.info(l('SuccessfullyDeleted'));
+                                                dataTable.ajax.reload();
+                                            });
+                                    }
                                 }
                             ]
                     }

@@ -23,5 +23,7 @@
     "Enum:TagType:3": "Life",
     "Enum:TagType:4": "Science",
     "Enum:TagType:5": "Languages",
+    "PostDeletionConfirmationMessage": "Are you sure to delete the post '{0}'?",
+    "SuccessfullyDeleted": "Successfully deleted!"
   }
 }
