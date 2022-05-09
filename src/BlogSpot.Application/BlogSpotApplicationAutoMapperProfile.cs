@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlogSpot.Authors;
 using BlogSpot.Posts;
 
 namespace BlogSpot;
@@ -12,5 +13,7 @@ public class BlogSpotApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
         CreateMap<Post, PostDto>();
         CreateMap<CreateUpdatePostsDto, Post>();
+        CreateMap<Author, AuthorDto>();
+
     }
 }

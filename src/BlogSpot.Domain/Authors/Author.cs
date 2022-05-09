@@ -46,7 +46,7 @@ namespace BlogSpot.Authors
         public class AuthorAlreadyExistsException : BusinessException
         {
             public AuthorAlreadyExistsException(string name)
-                : base(BookStoreDomainErrorCodes.AuthorAlreadyExists)
+                : base(BlogSpotDomainErrorCodes.AuthorAlreadyExists)
             {
                 WithData("name", name);
             }

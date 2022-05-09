@@ -10,13 +10,24 @@ public class BlogSpotPermissionDefinitionProvider : PermissionDefinitionProvider
     {
         var blogSpotGroup = context.AddGroup(BlogSpotPermissions.GroupName, L("Permission:BlogSpot"));
 
-        var postsPermission = blogSpotGroup.AddPermission(BlogSpotPermissions.Posts.Default, L("Permission:Posts"));
-        postsPermission.AddChild(BlogSpotPermissions.Posts.Create, L("Permission:Posts.Create"));
-        postsPermission.AddChild(BlogSpotPermissions.Posts.Edit, L("Permission:Posts.Edit"));
-        postsPermission.AddChild(BlogSpotPermissions.Posts.Delete, L("Permission:Posts.Delete"));
+        var postsPermission = blogSpotGroup.AddPermission(
+            BlogSpotPermissions.Posts.Default, L("Permission:Posts"));
+        postsPermission.AddChild(
+            BlogSpotPermissions.Posts.Create, L("Permission:Posts.Create"));
+        postsPermission.AddChild(
+            BlogSpotPermissions.Posts.Edit, L("Permission:Posts.Edit"));
+        postsPermission.AddChild(
+            BlogSpotPermissions.Posts.Delete, L("Permission:Posts.Delete"));
 
-        //Define your own permissions here.Example:
-        //myGroup.AddPermission(BlogSpotPermissions.MyPermission1, L("Permission:MyPermission1"));
+        var authorsPermission = blogSpotGroup.AddPermission(
+            BlogSpotPermissions.Authors.Default, L("Permission:Authors"));
+        authorsPermission.AddChild(
+            BlogSpotPermissions.Authors.Create, L("Permission:Authors.Create"));
+        authorsPermission.AddChild(
+            BlogSpotPermissions.Authors.Edit, L("Permission:Authors.Edit"));
+        authorsPermission.AddChild(
+            BlogSpotPermissions.Authors.Delete, L("Permission:Authors.Delete"));
+
     }
 
     private static LocalizableString L(string name)
