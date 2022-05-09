@@ -83,13 +83,12 @@ public class BlogSpotDbContext :
 
         builder.Entity<Post>(b =>
         {
-            b.ToTable(BlogSpotConsts.DbTablePrefix + "Posts", 
-                BlogSpotConsts.DbSchema);
-
+            b.ToTable(BlogSpotConsts.DbTablePrefix + "Posts", BlogSpotConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
 
             b.Property(a => a.Title).IsRequired();
             b.Property(a => a.Content).IsRequired();
+            b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
 
         });
 

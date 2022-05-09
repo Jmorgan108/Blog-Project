@@ -29,50 +29,53 @@ namespace BlogSpot
         {
             if (await _postRepository.GetCountAsync() <= 0)
             {
-                await _postRepository.InsertAsync(
-                    new Post
-                    {
-                        Title = "1973",
-                        Content = "This is by far one of best songs ever made",
-                        PublishDate = new DateTime(2004, 6, 8),
-                        Tags = TagType.Life,
-                        Likes = 0
-                    },
-                    autoSave: true
-                );
-
-                await _postRepository.InsertAsync(
-                    new Post
-                    {
-                        Title = "C Hashtag is the best",
-                        Content = "We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#," +
-                        "We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#",
-                        PublishDate = new DateTime(2022, 11, 11),
-                        Tags = TagType.Tech,
-                        Likes = 23
-                    },
-                    autoSave: true
-                );
+                return;
             }
 
-            if (await _authorRepository.GetCountAsync() <= 0)
-            {
-                await _authorRepository.InsertAsync(
-                    await _authorManager.CreateAsync(
-                        "Stan Lee",
-                        new DateTime(1958, 06, 25),
-                        "Stan Lee was an American comic book writer, editor, publisher, and producer. He rose through the ranks of a family-run business called Timely Publications"
-                    )
-                );
+            var stan = await _authorRepository.InsertAsync(
+                 await _authorManager.CreateAsync(
+                     "Stan Lee",
+                     new DateTime(1958, 06, 25),
+                     "Stan Lee was an American comic book writer, editor, publisher, and producer. He rose through the ranks of a family-run business called Timely Publications"
+                 )
+             );
 
-                await _authorRepository.InsertAsync(
-                    await _authorManager.CreateAsync(
-                        "Edgar Allan Poe",
-                        new DateTime(1809, 03, 11),
-                        "Edgar Allan Poe was an American writer, poet, editor, and literary critic. Poe is best known for his poetry and short stories, particularly his tales of mystery and the macabre."
-                    )
-                );
-            }
+            var EdgarA = await _authorRepository.InsertAsync(
+                await _authorManager.CreateAsync(
+                    "Edgar Allan Poe",
+                    new DateTime(1809, 03, 11),
+                    "Edgar Allan Poe was an American writer, poet, editor, and literary critic. Poe is best known for his poetry and short stories, particularly his tales of mystery and the macabre."
+                )
+            );
+
+
+            await _postRepository.InsertAsync(
+                new Post
+                {
+                    AuthorId = EdgarA.Id,
+                    Title = "1973",
+                    Content = "This is by far one of best songs ever made",
+                    PublishDate = new DateTime(2004, 6, 8),
+                    Tags = TagType.Life,
+                    Likes = 0
+                },
+                autoSave: true
+            );
+
+            await _postRepository.InsertAsync(
+                new Post
+                {
+                    AuthorId = stan.Id,
+                    Title = "C Hashtag is the best",
+                    Content = "We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#," +
+                    "We all love C#,We all love C#,We all love C#,We all love C#,We all love C#,We all love C#",
+                    PublishDate = new DateTime(2022, 11, 11),
+                    Tags = TagType.Tech,
+                    Likes = 23
+                },
+                autoSave: true
+            );
         }
+
     }
 }

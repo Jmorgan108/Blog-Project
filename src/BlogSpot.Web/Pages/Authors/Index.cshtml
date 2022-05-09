@@ -1,29 +1,29 @@
 ﻿@page
 @using BlogSpot.Permissions
-@using BlogSpot.Web.Pages.Posts
 @using BlogSpot.Localization
+@using BlogSpot.Web.Pages.Authors
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
-@model IndexModel
 @inject IStringLocalizer<BlogSpotResource> L
 @inject IAuthorizationService AuthorizationService
+@model IndexModel
 @section scripts
 {
-<abp-script src="/Pages/Posts/Index.js" />
+<abp-script src="/Pages/Authors/Index.js" />
 }
 
 <abp-card>
     <abp-card-header>
         <abp-row>
             <abp-column size-md="_6">
-                <abp-card-title>@L["Posts"]</abp-card-title>
+                <abp-card-title>@L["Authors"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-end">
                 @if (await AuthorizationService
-                .IsGrantedAsync(BlogSpotPermissions.Posts.Create))
+                .IsGrantedAsync(BlogSpotPermissions.Authors.Create))
                 {
-                    <abp-button id="NewPostButton"
-                            text="@L["NewPost"].Value"
+                    <abp-button id="NewAuthorButton"
+                            text="@L["NewAuthor"].Value"
                             icon="plus"
                             button-type="Primary" />
                 }
@@ -31,6 +31,6 @@
         </abp-row>
     </abp-card-header>
     <abp-card-body>
-        <abp-table striped-rows="true" id="PostsTable"></abp-table>
+        <abp-table striped-rows="true" id="AuthorsTable"></abp-table>
     </abp-card-body>
 </abp-card>

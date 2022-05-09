@@ -53,6 +53,15 @@ public class BlogSpotMenuContributor : IMenuContributor
                 ));
         }
 
+        if (await context.IsGrantedAsync(BlogSpotPermissions.Authors.Default))
+        {
+            blogSpotMenu.AddItem(new ApplicationMenuItem(
+                "BlogSpot.Authors",
+                l["Menu:Authors"],
+                url: "/Authors"
+            ));
+        }
+
         if (MultiTenancyConsts.IsEnabled)
         {
             administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
