@@ -19,6 +19,7 @@
                             [
                                 {
                                     text: l('Edit'),
+                                    visible: abp.auth.isGranted('BlogSpot.Posts.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
@@ -28,6 +29,7 @@
                                     confirmMessage: function (data) {
                                         return l('PostDeletionConfirmationMessage', data.record.name);
                                     },
+                                    visible: abp.auth.isGranted('BlogSpot.Posts.Edit'),
                                     action: function (data) {
                                             blogSpot.posts.post
                                             .delete(data.record.id)

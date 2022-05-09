@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlogSpot.Authors;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -26,6 +27,7 @@ public class BlogSpotDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Post> Posts { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
     #region Entities from the modules
 
@@ -57,7 +59,7 @@ public class BlogSpotDbContext :
     #endregion
 
     public BlogSpotDbContext(DbContextOptions<BlogSpotDbContext> options)
-        : base(options)
+		: base(options)
     {
 
     }
@@ -81,11 +83,28 @@ public class BlogSpotDbContext :
 
         builder.Entity<Post>(b =>
         {
-            b.ToTable(BlogSpotConsts.DbTablePrefix + "Posts", BlogSpotConsts.DbSchema);
+            b.ToTable(BlogSpotConsts.DbTablePrefix + "Posts", 
+                BlogSpotConsts.DbSchema);
+
             b.ConfigureByConvention(); //auto configure for the base class props
+
             b.Property(a => a.Title).IsRequired();
             b.Property(a => a.Content).IsRequired();
 
+        });
+
+        builder.Entity<Author>(b =>
+        {
+            b.ToTable(BlogSpotConsts.DbTablePrefix + "Authors",
+                BlogSpotConsts.DbSchema);
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(AuthorConsts.MaxNameLength);
+
+            b.HasIndex(x => x.Name);
         });
     }
 }

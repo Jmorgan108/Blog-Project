@@ -37,6 +37,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using BlogSpot.Permissions;
 
 namespace BlogSpot.Web;
 
@@ -85,6 +87,13 @@ public class BlogSpotWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        Configure<RazorPagesOptions>(options =>
+        {
+            options.Conventions.AuthorizePage("/Posts/Index", BlogSpotPermissions.Posts.Default);
+            options.Conventions.AuthorizePage("/Posts/CreateModal", BlogSpotPermissions.Posts.Create);
+            options.Conventions.AuthorizePage("/Posts/EditModal", BlogSpotPermissions.Posts.Edit);
+        });
     }
 
     private void ConfigureUrls(IConfiguration configuration)

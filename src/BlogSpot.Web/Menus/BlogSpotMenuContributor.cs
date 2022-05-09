@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BlogSpot.Localization;
 using BlogSpot.MultiTenancy;
+using BlogSpot.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -20,6 +21,7 @@ public class BlogSpotMenuContributor : IMenuContributor
 
     private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
+
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<BlogSpotResource>();
 
@@ -33,19 +35,23 @@ public class BlogSpotMenuContributor : IMenuContributor
                 order: 0
             )
         );
-        context.Menu.AddItem(
-            new ApplicationMenuItem(
+        
+        var blogSpotMenu = new ApplicationMenuItem(
             "BlogSpot",
             l["Menu:BlogSpot"],
             icon: "fa fa-blog"
-        ).AddItem(
-            new ApplicationMenuItem(
+        );
+
+        context.Menu.AddItem(blogSpotMenu);
+        
+        if (await context.IsGrantedAsync(BlogSpotPermissions.Posts.Default))
+        {
+            blogSpotMenu.AddItem(new ApplicationMenuItem(
                 "BlogSpot.Posts",
                 l["Menu:Posts"],
                 url: "/Posts"
-                )
-            )
-        );
+                ));
+        }
 
         if (MultiTenancyConsts.IsEnabled)
         {

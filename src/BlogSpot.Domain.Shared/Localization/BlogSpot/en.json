@@ -24,6 +24,12 @@
     "Enum:TagType:4": "Science",
     "Enum:TagType:5": "Languages",
     "PostDeletionConfirmationMessage": "Are you sure to delete the post '{0}'?",
-    "SuccessfullyDeleted": "Successfully deleted!"
+    "SuccessfullyDeleted": "Successfully deleted!",
+    "Permission:BlogSpot": "BlogSpot",
+    "Permission:Posts": "Post Management",
+    "Permission:Posts.Create": "Creating new posts",
+    "Permission:Posts.Edit": "Editing the posts",
+    "Permission:Posts.Delete": "Deleting the posts",
+    "BlogSpot:00001": "There is already an author with the same name: {name}"
   }
 }

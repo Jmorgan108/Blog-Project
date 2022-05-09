@@ -1,9 +1,12 @@
 ﻿@page
+@using BlogSpot.Permissions
 @using BlogSpot.Web.Pages.Posts
 @using BlogSpot.Localization
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Localization
 @model IndexModel
 @inject IStringLocalizer<BlogSpotResource> L
+@inject IAuthorizationService AuthorizationService
 @section scripts 
 {
 	<abp-script src="/Pages/Posts/Index.js" />
@@ -16,10 +19,13 @@
                 <abp-card-title>@L["Posts"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-end">
+                @if (await AuthorizationService.IsGrantedAsync(BlogSpotPermissions.Posts.Create))
+                {
                 <abp-button id="NewPostButton"
                             text="@L["NewPost"].Value"
                             icon="plus"
                             button-type="Primary"/>
+                }
             </abp-column>
         </abp-row>
     </abp-card-header>
