@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace BlogSpot.Web.Pages.Posts
 {
-    public class CreatePostViewModel
+    public class EditPostViewModel
     {
+        [HiddenInput]
+        public Guid UserId { get; set; }
+
         [SelectItems(nameof(Authors))]
         [DisplayName("Author")]
         public Guid AuthorId { get; set; }
@@ -15,6 +19,7 @@ namespace BlogSpot.Web.Pages.Posts
         public string Title { get; set; }
 
         [Required]
+        [TextArea]
         public string Content { get; set; }
 
         public TagType Tags { get; set; } = TagType.Undefined;

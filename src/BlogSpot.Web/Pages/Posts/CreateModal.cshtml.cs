@@ -41,9 +41,8 @@ namespace BlogSpot.Web.Pages.Posts
             await _postAppService.CreateAsync(
                 ObjectMapper.Map<CreatePostViewModel, CreateUpdatePostsDto>(Post)
                 );
+
             return NoContent();
         }
-
-        
     }  
 }

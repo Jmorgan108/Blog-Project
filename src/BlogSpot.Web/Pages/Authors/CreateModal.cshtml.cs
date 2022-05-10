@@ -31,19 +31,5 @@ namespace BlogSpot.Web.Pages.Authors
             await _authorAppService.CreateAsync(dto);
             return NoContent();
         }
-
-        public class CreateAuthorViewModel
-        {
-            [Required]
-            [StringLength(AuthorConsts.MaxNameLength)]
-            public string Name { get; set; }
-
-            [Required]
-            [DataType(DataType.Date)]
-            public DateTime BirthDate { get; set; }
-
-            [TextArea]
-            public string ShortBio { get; set; }
-        }
     }
 }

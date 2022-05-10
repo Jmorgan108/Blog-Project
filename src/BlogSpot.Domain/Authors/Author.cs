@@ -13,7 +13,7 @@ namespace BlogSpot.Authors
 
         private Author()
         {
-            /* This constructor is for deserialization / ORM purpose */
+
         }
 
         internal Author(
@@ -41,15 +41,6 @@ namespace BlogSpot.Authors
                 nameof(name),
                 maxLength: AuthorConsts.MaxNameLength
             );
-        }
-
-        public class AuthorAlreadyExistsException : BusinessException
-        {
-            public AuthorAlreadyExistsException(string name)
-                : base(BlogSpotDomainErrorCodes.AuthorAlreadyExists)
-            {
-                WithData("name", name);
-            }
         }
     }
 }

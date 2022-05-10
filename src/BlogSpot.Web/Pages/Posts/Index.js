@@ -93,6 +93,7 @@
     });
 
     editModal.onResult(function () {
+        abp.notify.info(l('Nice One'));
         dataTable.ajax.reload();
     });
 

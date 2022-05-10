@@ -12,9 +12,10 @@ namespace BlogSpot
     {
         public Guid UserId { get; set; }
         public Guid AuthorId { get; set; }
-        public DateTime PublishDate { get; set; }
+        public DateTime PublishDate { get; set; } = DateTime.Now;
         public TagType Tags { get; set; }
         public int Likes { get; set; }
+        [Required]
         public string Title { get; set; }
         public string Content { get; set; }
     }
