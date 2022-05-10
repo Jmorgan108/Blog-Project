@@ -47,6 +47,10 @@
                     data: "title"
                 },
                 {
+                    title: l('Author'),
+                    data: "authorName"
+                },
+                {
                     title: l('Tags'),
                     data: "tags",
                     render: function (data) {

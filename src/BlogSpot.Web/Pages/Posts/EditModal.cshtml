@@ -18,7 +18,7 @@
                 <textarea rows="4" cols="55" maxlength="350" style="resize: none" asp-for="Post.Content"/>
                 <abp-select asp-for="Post.Tags"></abp-select>
                 <abp-input asp-for="Post.PublishDate"></abp-input>
-                <abp-input asp-for="Post.UserId" readonly="true"></abp-input>
+                <abp-input asp-for="Post.AuthorId" readonly="true"></abp-input>
             </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>	

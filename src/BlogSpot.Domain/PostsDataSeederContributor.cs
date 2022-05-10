@@ -27,7 +27,7 @@ namespace BlogSpot
 
         public async Task SeedAsync(DataSeedContext context)
         {
-            if (await _postRepository.GetCountAsync() <= 0)
+            if (await _postRepository.GetCountAsync() > 0)
             {
                 return;
             }

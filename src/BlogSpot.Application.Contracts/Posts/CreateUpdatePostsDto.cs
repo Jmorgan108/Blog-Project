@@ -6,7 +6,7 @@ namespace BlogSpot.Posts
 {
     public class CreateUpdatePostsDto
     {
-        public Guid UserId { get; set; }
+        public Guid AuthorId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
